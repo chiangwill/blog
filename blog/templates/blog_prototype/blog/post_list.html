@@ -1,0 +1,47 @@
+{% extends 'blog_prototype/base.html' %}
+{% load i18n %}
+{% block title %} Blog Prototype - {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="be-content">
+    <div class="page-head">
+        <h2 class="page-head-title">Blog</h2>
+        <nav aria-label="breadcrumb" role="navigation">
+            <ol class="breadcrumb page-head-nav">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item">Blog</li>
+            </ol>
+        </nav>
+        <div class="col-sm-auto mt-2 text-right">
+            <a href="{% url 'post-create' %}" class="btn btn-primary">Create New Post</a>
+        </div>
+    </div>
+    <div class="main-content container-fluid">
+        <div class="row">
+            <div class="col-12">
+                    <ul class="timeline">
+                        {% for post in posts %}
+                            <li class="timeline-item timeline-item-detailed">
+                                <div class="timeline-date">{{ post.create_at_date }}</div>
+                                <div class="timeline-content">
+                                    <!-- <div class="timeline-avatar">{{ post.username }}</div> -->
+                                    <div class="timeline-header">
+                                        <span class="timeline-time">{{ post.create_at_time }}</span>
+                                        <span class="timeline-autor">{{ post.username }}</span>
+                                        <p class="timeline-activity">
+                                            {{ post.title }}
+                                        </p>
+                                        <div class="timeline-summary">
+                                            <p>{{ post.description }}</p>
+                                            <a href="{% url 'post-view' post.id %}">read more...</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

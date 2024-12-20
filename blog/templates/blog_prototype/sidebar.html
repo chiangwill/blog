@@ -1,0 +1,20 @@
+{% load i18n %}
+<div class="be-left-sidebar">
+    <div class="left-sidebar-wrapper">
+        <a href="#" class="left-sidebar-toggle">test</a>
+        <div class="left-sidebar-spacer">
+            <div class="left-sidebar-scroll">
+                <div class="left-sidebar-content">
+                    <ul class="sidebar-elements">
+                        <li class="divider">{% trans "目錄" %}</li>
+                        <li {% if current_section == 'artist' %} class="active" {% endif %}>
+                            <a href="{% url 'post-list' %}"><i class="icon mdi mdi-account-box"></i><span>blog</span></a>
+                        </li>
+                    </ul>
+                    <hr>
+                    <p>© {% now 'Y' %} Blog Prototype</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

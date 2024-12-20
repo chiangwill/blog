@@ -1,0 +1,71 @@
+{% load i18n static widget_tweaks %}
+<!DOCTYPE html>
+<html ng-app="app">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>{% block title %}Blog Prototype{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" href="{% static 'images/test_pic.jpg' %}" />
+    <link rel="stylesheet" href="{% static 'libs/beagle/perfect-scrollbar/css/perfect-scrollbar.css' %}" />
+    <link rel="stylesheet" href="{% static 'libs/beagle/material-design-icons/css/material-design-iconic-font.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'libs/beagle/app.css' %}" />
+    {% block styles %}{% endblock styles %}
+    <link rel="stylesheet" href="{% static 'styles/blog/base.css' %}" />
+</head>
+
+<body class="be-splash-screen">
+    <div class="be-wrapper be-login">
+        <div class="be-content">
+            <div class="main-content container-fluid">
+                <div class="splash-container">
+                    <div class="card card-border-color card-border-color-primary">
+                        <div class="card-header"><img class="logo-img" src="{% static 'images/test_pic.jpg' %}" alt="logo" width="200" height="100"><span class="splash-description">Please enter your user information.</span></div>
+                        <div class="card-body">
+                            {% include 'common/render_alert_messages.html' %}
+                            {% include 'common/render_form_non_field_errors.html' %}
+                            {% include 'common/render_form_errors.html' %}
+                            <form method="POST">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label>{{ form.username.label }}</label>
+                                    {{ form.username|add_class:'form-control' }}
+                                </div>
+                                <div class="form-group row signup-password">
+                                    <div class="col-6">
+                                        <label>{{ form.password1.label }}</label>
+                                        {{ form.password1|add_class:'form-control' }}
+                                    </div>
+                                    <div class="col-6">
+                                        <label>{{ form.password2.label }}</label>
+                                        {{ form.password2|add_class:'form-control' }}
+                                    </div>
+                                </div>
+                                <div class="form-group pt-2">
+                                    <button class="btn btn-block btn-primary btn-xl" type="submit">Sign Up</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="splash-footer">
+                        <span>
+                            Already have an account?
+                            <a href="{% url 'login' %}">Login</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'libs/beagle/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'libs/beagle/perfect-scrollbar/js/perfect-scrollbar.min.js' %}"></script>
+    <script src="{% static 'libs/beagle/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'libs/beagle/app.js' %}"></script>
+    <script src="{% static 'libs/js-cookie/js.cookie.js' %}"></script>
+    {% block scripts %}{% endblock scripts %}
+    <script src="{% static 'javascripts/blog/base.js' %}"></script>
+
+</body>
+
+</html>
